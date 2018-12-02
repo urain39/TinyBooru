@@ -1,0 +1,107 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100% \9;
+  overflow: hidden \9;
+  height: calc(100% - 4px);
+  color: #f0f0f0;
+  background-color: #222;
+  font-size: 13px;
+}
+
+a {
+  color: #fefefe;
+}
+
+.btn {
+  color: #f8f8f8;
+  border: 1px solid #888;
+  background-color: #666;
+  font-size: 14px;
+}
+
+#btn-refresh {
+  top: 20px;
+  right: 4%;
+  position: absolute;
+}
+
+.hide {
+  display: none;
+}
+
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+
+#nav-bar {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.container {
+  width: 92%;
+  padding: 0 4%;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid #666;
+}
+.container section {
+  text-align: center;
+}
+
+#head-container {
+  height: 20%;
+}
+#head-container #nav-bar {
+  bottom: 6%;
+  right: 4%;
+  position: absolute;
+}
+
+#main-container {
+  height: 70%;
+  display: inline-block;
+}
+
+#footer-container {
+  height: 10%;
+  clear: both;
+}
+#footer-container section {
+  padding-top: 14px;
+  text-align: center;
+}
+
+@media (max-height: 320px) {
+  body {
+    overflow-y: auto;
+  }
+
+  #head-container {
+    height: 35%;
+  }
+
+  #main-container {
+    height: 55%;
+  } 
+
+  #footer-container section {
+    padding-top: 5px;
+  }
+}
+
+@media (min-height: 768px) {
+  #head-container {
+    height: 10%;
+  }
+
+  #main-container {
+    height: 80%;
+  }
+}

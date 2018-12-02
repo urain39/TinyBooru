@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TinyBooru</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="urain39" />
+    <meta name="keywords" content="Booru, TinyBooru, SafeBooru" />
+    <meta name="description" content="A yande.re database based site for SFW posts" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link href="css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="head-container" class="container">
+      <h2>Welcome to TinyBooru~<h2>
+      <button id="btn-refresh" class="btn">Refresh</button>
+      <div id="nav-bar" class="pull-right">
+        <a href="/help.html">Help</a>
+        <a href="/about.html">About</a>
+        <a href="mailto:hexiedeshijie@gmail.com">Contact</a>
+      </div>
+    </div>
+    <div id="main-container" class="container">
+        <script id="post-preview-tpl" type="text/mustache-template">
+          {{#posts}}
+          <div class="post-preview">
+            <a href="{{file_url}}"><img src="{{sample_url}}" /> />
+          </div>
+          {{/posts}}
+        </script>
+    </div>
+    <div id="footer-container" class="container">
+      <section>
+        &copy; 2018 TinyBooru. Some Rights Reserved. 
+      </section>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/mustache.min.js"></script>
+    <script src="js/tinybooru.js"></script>
+  </body>
+</html>
