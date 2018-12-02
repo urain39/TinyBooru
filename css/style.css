@@ -22,8 +22,8 @@ a {
 }
 
 #btn-refresh {
-  top: 20px;
-  right: 4%;
+  bottom: 12%;
+  left: 4%;
   position: absolute;
 }
 
@@ -56,7 +56,7 @@ a {
 }
 
 #head-container {
-  height: 20%;
+  height: 18%;
 }
 #head-container #nav-bar {
   bottom: 6%;
@@ -65,7 +65,7 @@ a {
 }
 
 #main-container {
-  height: 70%;
+  height: 72%;
   display: inline-block;
 }
 
