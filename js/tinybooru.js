@@ -14,34 +14,56 @@
  * limitations under the License.
  */
 
-TinyBooru = (function() {
+var TinyBooru = (function() {
   if (typeof(this.TinyBooru)==='undefined') {
     return {
       init: function() {
-        this.tpl.init();
-        this.tool.init();	
-        this.event.init();
-        window.onload = function() {
-          footer_height = $("#footer-container").outerHeight(true);
-          
-        }
+        this.ui.init();
+        this.tpls.init();
+        this.tools.init();
+        this.events.init();
+        this.settings.init();
       },
-      tpl: {
-        init: function() {
-            // TODO:
-        }
-      },
-      tool: {
+      ui: {
         init: function() {
           // TODO:
         }
       },
-      event: {
+      tpls: {
+        init: function() {
+          // TODO:
+        }
+      },
+      tools: {
+        init: function() {
+          // NOTE: Do Nothing.
+        },
+        pack_all: function() {
+          // TODO:
+        },
+        pack_selected: function() {
+          // TODO:
+        }
+      },
+      events: {
         init: function() {
           $("#btn-refresh").on("click", function() {
             location.reload(true);
           });
+          $("#btn-show-settings").on("click", function() {
+            $("#settings-modal").removeClass("hide");
+          });
         }
+      },
+      settings: {
+        load: function() {
+          // TODO: load the settings from cookies
+        },
+        save: function() {
+          // TODO: save the settings from cookies
+        },
+        init: function() { this.load(); },
+        exit: function() { this.save(); }
       }
     }
   }

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "NotoSerif-Regular";
+  src: url("../fonts/NotoSerif-Regular.ttf") format("TrueType");
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -6,8 +11,9 @@ html, body {
   overflow: hidden \9;
   height: calc(100% - 4px);
   color: #f0f0f0;
-  background-color: #222;
+  background-color: #222228;
   font-size: 13px;
+  font-family: "NotoSerif-Regular";
 }
 
 a {
@@ -38,9 +44,17 @@ a {
   float: right;
 }
 
-#nav-bar {
-  display: inline-block;
+.nav-bar {
   overflow: hidden;
+  float: right;
+  display: inline-block;
+  position: relative;
+}
+
+.modal {
+  left: 50%;
+  right: 50%;
+  background-color: #222;
 }
 
 .container {
@@ -49,7 +63,7 @@ a {
   display: block;
   overflow: hidden;
   position: relative;
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #aaa;
 }
 .container section {
   text-align: center;
@@ -57,11 +71,6 @@ a {
 
 #head-container {
   height: 18%;
-}
-#head-container #nav-bar {
-  bottom: 6%;
-  right: 4%;
-  position: absolute;
 }
 
 #main-container {
