@@ -27,10 +27,8 @@ a {
   font-size: 14px;
 }
 
-#btn-refresh {
-  bottom: 12%;
-  left: 4%;
-  position: absolute;
+#btn-settings {
+  float: left;
 }
 
 .hide {
@@ -47,7 +45,7 @@ a {
 .nav-bar {
   overflow: hidden;
   float: right;
-  display: inline-block;
+  display: inline;
   position: relative;
 }
 
@@ -75,7 +73,6 @@ a {
 
 #main-container {
   height: 72%;
-  display: inline-block;
 }
 
 #footer-container {
@@ -85,6 +82,24 @@ a {
 #footer-container section {
   padding-top: 14px;
   text-align: center;
+}
+
+@media (max-height: 500px) {
+  body {
+    overflow-y: auto;
+  }
+
+  #head-container {
+    height: 25%;
+  }
+
+  #main-container {
+    height: 65%;
+  }
+
+  #footer-container section {
+    padding-top: 5px;
+  }
 }
 
 @media (max-height: 320px) {
@@ -107,10 +122,10 @@ a {
 
 @media (min-height: 768px) {
   #head-container {
-    height: 10%;
+    height: 8%;
   }
 
   #main-container {
-    height: 80%;
+    height: 82%;
   }
 }

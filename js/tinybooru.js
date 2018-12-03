@@ -15,7 +15,7 @@
  */
 
 var TinyBooru = (function() {
-  if (typeof(this.TinyBooru)==='undefined') {
+  if (typeof(this.TinyBooru) === 'undefined') {
     return {
       init: function() {
         this.ui.init();
@@ -26,7 +26,20 @@ var TinyBooru = (function() {
       },
       ui: {
         init: function() {
-          // TODO:
+          var _onload = null;
+          if (typeof(window.onload) === "function") {
+            _onload = window.onload;
+          }
+          var that = this;
+          window.onload = function() {
+            if (_onload) {
+              _onload();
+            }
+            that.onload();
+          }
+        },
+        onload: function() {
+          alert($(window).outerHeight());
         }
       },
       tpls: {
@@ -47,10 +60,7 @@ var TinyBooru = (function() {
       },
       events: {
         init: function() {
-          $("#btn-refresh").on("click", function() {
-            location.reload(true);
-          });
-          $("#btn-show-settings").on("click", function() {
+          $("#btn-settings").on("click", function() {
             $("#settings-modal").removeClass("hide");
           });
         }
