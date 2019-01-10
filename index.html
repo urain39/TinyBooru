@@ -24,21 +24,16 @@
       </div>
     </div>
     <div id="main-container" class="container">
-        <script id="post-preview-tpl" type="text/mustache-template">
-          {{#posts}}
-          <div class="post-preview">
-            <a href="{{file_url}}"><img src="{{sample_url}}" /> />
-          </div>
-          {{/posts}}
-        </script>
+      <div class="image-preview-tpl">
+        <a href="#{file_url}"><img src="#{sample_url}"/></a>
+      </div>
     </div>
     <div id="footer-container" class="container">
       <section>
         &copy; 2018 TinyBooru. Some Rights Reserved. 
       </section>
     </div>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/mustache.min.js"></script>
+    <script src="js/ijktpl.js"></script>
     <script src="js/tinybooru.js"></script>
   </body>
 </html>

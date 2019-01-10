@@ -14,71 +14,23 @@
  * limitations under the License.
  */
 
-var TinyBooru = (function() {
-  if (typeof(this.TinyBooru) === 'undefined') {
-    return {
-      init: function() {
-        this.ui.init();
-        this.tpls.init();
-        this.tools.init();
-        this.events.init();
-        this.settings.init();
-      },
-      ui: {
-        init: function() {
-          var _onload = null;
-          if (typeof(window.onload) === "function") {
-            _onload = window.onload;
-          }
-          var that = this;
-          window.onload = function() {
-            if (_onload) {
-              _onload();
-            }
-            that.onload();
-          }
-        },
-        onload: function() {
-          alert($(window).outerHeight());
-        }
-      },
-      tpls: {
-        init: function() {
-          // TODO:
-        }
-      },
-      tools: {
-        init: function() {
-          // NOTE: Do Nothing.
-        },
-        pack_all: function() {
-          // TODO:
-        },
-        pack_selected: function() {
-          // TODO:
-        }
-      },
-      events: {
-        init: function() {
-          $("#btn-settings").on("click", function() {
-            $("#settings-modal").removeClass("hide");
-          });
-        }
-      },
-      settings: {
-        load: function() {
-          // TODO: load the settings from cookies
-        },
-        save: function() {
-          // TODO: save the settings from cookies
-        },
-        init: function() { this.load(); },
-        exit: function() { this.save(); }
-      }
+(() => {
+  var _onload = window.onload;
+
+  window.onload = function() {
+    var tpls = document.querySelectorAll("#main-container .image-preview-tpl");
+    tpls.forEach(function(tpl) {
+      var ijktpl = new IJKTPL(tpl, {
+        file_url: "/",
+        sample_url: "https://konachan.net/sample/f2fd16b634638e0f025ad845162f4642/Konachan.com%20-%20276790%20sample.jpg"
+      });
+      ijktpl.apply(tpl);
+    });
+
+    if (typeof _onload === "function") {
+      _onload.apply(this);
     }
   }
-})()
-
-TinyBooru.init();
+})();
 
 // vim: set ts=2 sw=2 ff=unix et:

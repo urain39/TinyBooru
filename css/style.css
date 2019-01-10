@@ -84,6 +84,12 @@ a {
   text-align: center;
 }
 
+.image-preview-tpl img {
+  width: 100px;
+  padding: 20px;
+  height: 100px;
+}
+
 @media (max-height: 500px) {
   body {
     overflow-y: auto;
