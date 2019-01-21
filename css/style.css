@@ -84,7 +84,20 @@ a {
   text-align: center;
 }
 
-.image-preview-tpl img {
+#post-viewer {
+  height: 100%;
+  overflow: scroll;
+}
+
+.ijktpl-tpl {
+  display: none;
+}
+
+.preview-tpl {
+  display: inline;
+}
+
+.preview-tpl img {
   width: 100px;
   padding: 20px;
   height: 100px;

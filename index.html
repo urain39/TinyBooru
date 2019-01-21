@@ -24,8 +24,14 @@
       </div>
     </div>
     <div id="main-container" class="container">
-      <div class="image-preview-tpl">
-        <a href="#{file_url}"><img src="#{sample_url}"/></a>
+      <div id="post-viewer" class="ijktpl-tpl">
+      [[^posts]] [[@post]]
+        [[?post.sample_url]]
+        <div class="preview-tpl">
+          <a href="[[post.file_url]]"><img src="[[post.preview_url]]"/></a>
+        </div>
+        [[;post.sample_url]]
+      [[$posts]]
       </div>
     </div>
     <div id="footer-container" class="container">
@@ -33,7 +39,8 @@
         &copy; 2018 TinyBooru. Some Rights Reserved. 
       </section>
     </div>
-    <script src="js/ijktpl.js"></script>
+    <script src="js/vconsole.js"></script>
+    <script src="js/ijktpl.min.js"></script>
     <script src="js/tinybooru.js"></script>
   </body>
 </html>

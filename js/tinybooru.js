@@ -14,22 +14,25 @@
  * limitations under the License.
  */
 
-(() => {
-  var _onload = window.onload;
+(function() {
+  function fetchPosts() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", "https://yande.re/post/index.json?limit=9", false);
+    xhr.send(null);
+    return JSON.parse(xhr.responseText);
+  }
 
   window.onload = function() {
-    var tpls = document.querySelectorAll("#main-container .image-preview-tpl");
-    tpls.forEach(function(tpl) {
-      var ijktpl = new IJKTPL(tpl, {
-        file_url: "/",
-        sample_url: "https://konachan.net/sample/f2fd16b634638e0f025ad845162f4642/Konachan.com%20-%20276790%20sample.jpg"
-      });
-      ijktpl.apply(tpl);
-    });
+    var self = this;
+    var $vConsolse = new VConsole();
 
-    if (typeof _onload === "function") {
-      _onload.apply(this);
-    }
+    var tpl = document.querySelector("#post-viewer");
+
+    self.ijkmgr = new IJKTPL(tpl, {
+      posts: fetchPosts()
+    }, { debug: true });
+    self.ijkmgr.compile();
+    tpl.classList.remove("ijktpl-tpl");
   }
 })();
 
