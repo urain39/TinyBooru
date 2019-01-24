@@ -102,7 +102,7 @@ a {
 .preview-tpl img {
   width: 30%;
   padding: 1.2%;
-  height: 33.%;
+  height: 33.3%;
 }
 
 @media (max-height: 500px) {

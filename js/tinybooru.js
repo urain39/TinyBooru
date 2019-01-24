@@ -36,6 +36,10 @@
     self.ijkmgr.compile();
     tpl.classList.remove("ijktpl-tpl");
   }
+
+  $("#btn-settings")[0].onclick = function() {
+    alert("Not implemented yet!");
+  }
 })();
 
 // vim: set ts=2 sw=2 ff=unix et:
