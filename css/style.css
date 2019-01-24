@@ -23,12 +23,14 @@ a {
 .btn {
   color: #f8f8f8;
   border: 1px solid #888;
-  background-color: #666;
+  background-color: #282828;
+  border-radius: 4px;
   font-size: 14px;
 }
 
 #btn-settings {
   float: left;
+  padding: 3px;
 }
 
 .hide {
@@ -98,9 +100,9 @@ a {
 }
 
 .preview-tpl img {
-  width: 80px;
-  padding: 10px;
-  height: 80px;
+  width: 30%;
+  padding: 1.2%;
+  height: 33.%;
 }
 
 @media (max-height: 500px) {

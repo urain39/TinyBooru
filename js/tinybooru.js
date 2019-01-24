@@ -17,17 +17,19 @@
 (function() {
   function fetchPosts() {
     var xhr = new XMLHttpRequest();
-    xhr.open("get", "https://yande.re/post/index.json?limit=9", false);
+    xhr.open("get", "https://yande.re/post/index.json?limit=9&tags=seifuku+rating:s", false);
     xhr.send(null);
     return JSON.parse(xhr.responseText);
+  }
+
+  function $(selector) {
+    return document.querySelectorAll(selector);
   }
 
   window.onload = function() {
     var self = this;
     var $vConsolse = new VConsole();
-
-    var tpl = document.querySelector("#post-viewer");
-
+    var tpl = $("#post-viewer")[0]
     self.ijkmgr = new IJKTPL(tpl, {
       posts: fetchPosts()
     }, { debug: true });
