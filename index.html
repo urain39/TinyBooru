@@ -14,30 +14,39 @@
     <![endif]-->
   </head>
   <body>
-    <div id="head-container" class="container">
-      <h2>Welcome to TinyBooru~<h2>
-      <button id="btn-settings" class="btn">Settings</button>
-      <div class="nav-bar">
-        <a href="javascript:void(0)">Help</a>
-        <a href="javascript:void(0)">About</a>
-        <a href="mailto:hexiedeshijie@gmail.com">Contact</a>
-      </div>
-    </div>
-    <div id="main-container" class="container">
-      <div id="post-viewer" class="ijktpl-tpl">
-      [[^posts]] [[@post]]
-        [[?post.sample_url]]
-        <div class="preview-tpl">
-          <a href="[[post.file_url]]"><img src="[[post.preview_url]]"/></a>
+    <div id="viewport" class="ijktpl-tpl">
+      <div id="head-container" class="container">
+        <h2>Welcome to TinyBooru~<h2>
+        <button id="btn-settings" class="btn">Settings</button>
+        <div class="nav-bar">
+          [[?params.page]]
+            <a id="btn-prev-page" href="javascript:void(0)">Prev</a>
+            &nbsp;&nbsp;[[params.page]]&nbsp;&nbsp;
+            <a id="btn-next-page" href="javascript:void(0)">Next</a>
+          [[:params.page]]
+            <!-- page 0 -->
+            <a href="javascript:void(0)">Help</a>
+            <a href="javascript:void(0)">About</a>
+            <a href="mailto:hexiedeshijie@gmail.com">Contact</a>
+          [[;params.page]]
         </div>
-        [[;post.sample_url]]
-      [[$posts]]
       </div>
-    </div>
-    <div id="footer-container" class="container">
-      <section>
-        &copy; 2018 TinyBooru. Some Rights Reserved. 
-      </section>
+      <div id="main-container" class="container">
+        <div id="post-viewer">
+        [[^posts]] [[@post]]
+          [[?post.sample_url]]
+          <div class="preview-tpl">
+            <a href="[[post.file_url]]"><img src="[[post.preview_url]]"/></a>
+          </div>
+          [[;post.sample_url]]
+        [[$posts]]
+        </div>
+      </div>
+      <div id="footer-container" class="container">
+        <section>
+          &copy; 2018 TinyBooru. Some Rights Reserved. 
+        </section>
+      </div>
     </div>
     <script src="js/lib/vconsole.js"></script>
     <script src="js/lib/ijktpl.min.js"></script>

@@ -69,6 +69,10 @@ a {
   text-align: center;
 }
 
+#viewport {
+  height: 100%;
+}
+
 #head-container {
   height: 18%;
 }

@@ -17,6 +17,10 @@
 (function() {
   var DATA_URL = "https://yande.re/post/index.json?tags={tags}&limit={limit}&page={page}";
 
+  function $(selector) {
+    return document.querySelectorAll(selector);
+  }
+
   function format(str, map) {
     return str.replace(/\{([0-9A-Za-z]+)\}/g, function(key) {
       key = key.substring(1, key.length - 1);
@@ -34,33 +38,47 @@
     xhr.send(null);
   }
 
-  function $(selector) {
-    return document.querySelectorAll(selector);
+  function renderPage(ijkmgr, params) {
+    fetchPosts(params, function(data) {
+      ijkmgr.render({
+        posts: data,
+        params: params
+      });
+      // Binding events
+      $("#btn-settings")[0].onclick = function() {
+        alert("Not Implemented Yet!");
+        // TODO: add a modal to set tags and limit.
+      };
+      $("#btn-prev-page")[0].onclick = function() {
+        Math.abs(params.page--);
+        renderPage(ijkmgr, params);
+      };
+      $("#btn-next-page")[0].onclick = function() {
+        Math.abs(params.page++);
+        renderPage(ijkmgr, params);
+      };
+    });  
   }
 
   window.onload = function() {
     var self = this;
     var $vConsolse = new VConsole();
-    var tpl = $("#post-viewer")[0];
+    var tpl = $("#viewport")[0];
 
     self.ijkmgr = new IJKTPL(tpl, {
-      posts: []
+      posts: [],
+      params: { page: 0 }
     }, { debug: true });
     self.ijkmgr.compile();
+    // First page
+    $("#viewport")[0].classList.remove("ijktpl-tpl");
 
     var params = {
       tags: "seifuku+rating:s",
       limit: 9,
       page: 1
     };
-    fetchPosts(params, function(data) {
-      self.ijkmgr.render({ posts: data });
-      tpl.classList.remove("ijktpl-tpl");
-    });
-  };
-
-  $("#btn-settings")[0].onclick = function() {
-    alert("Not implemented yet!");
+    renderPage(ijkmgr, params);
   };
 })();
 
