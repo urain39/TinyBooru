@@ -45,9 +45,9 @@
         params: params
       });
 
-      // Binding events
+      // Re-Binding events
       $("#btn-search")[0].onclick = function() {
-        params.page = (params.page == 0 ? 1 : params.page);
+        params.page = 1; // Reset.
         params.tags = $("#search-box")[0].value;
         renderPage(ijkmgr, params);
       };
