@@ -15,11 +15,23 @@
  */
 
 (function() {
-  function fetchPosts() {
+  var DATA_URL = "https://yande.re/post/index.json?tags={tags}&limit={limit}&page={page}";
+
+  function format(str, map) {
+    return str.replace(/\{([0-9A-Za-z]+)\}/g, function(key) {
+      key = key.substring(1, key.length - 1);
+      return map[key] || "";
+    });
+  }
+
+  function fetchPosts(params, onReady) {
     var xhr = new XMLHttpRequest();
-    xhr.open("get", "https://yande.re/post/index.json?limit=9&tags=seifuku+rating:s", false);
+    xhr.open("GET", format(DATA_URL, params), true);
+    xhr.setRequestHeader("Content-Type", "text/plain");
+    xhr.onload = function() {
+      onReady(JSON.parse(this.responseText));
+    };
     xhr.send(null);
-    return JSON.parse(xhr.responseText);
   }
 
   function $(selector) {
@@ -29,17 +41,27 @@
   window.onload = function() {
     var self = this;
     var $vConsolse = new VConsole();
-    var tpl = $("#post-viewer")[0]
+    var tpl = $("#post-viewer")[0];
+
     self.ijkmgr = new IJKTPL(tpl, {
-      posts: fetchPosts()
+      posts: []
     }, { debug: true });
     self.ijkmgr.compile();
-    tpl.classList.remove("ijktpl-tpl");
-  }
+
+    var params = {
+      tags: "seifuku+rating:s",
+      limit: 9,
+      page: 1
+    };
+    fetchPosts(params, function(data) {
+      self.ijkmgr.render({ posts: data });
+      tpl.classList.remove("ijktpl-tpl");
+    });
+  };
 
   $("#btn-settings")[0].onclick = function() {
     alert("Not implemented yet!");
-  }
+  };
 })();
 
 // vim: set ts=2 sw=2 ff=unix et:
