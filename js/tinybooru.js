@@ -44,17 +44,22 @@
         posts: data,
         params: params
       });
+
       // Binding events
-      $("#btn-settings")[0].onclick = function() {
-        alert("Not Implemented Yet!");
-        // TODO: add a modal to set tags and limit.
+      $("#btn-search")[0].onclick = function() {
+        params.page = (params.page == 0 ? 1 : params.page);
+        params.tags = $("#search-box")[0].value;
+        renderPage(ijkmgr, params);
       };
+      if (params.page < 1) {
+        return; // skip page 0.
+      }
       $("#btn-prev-page")[0].onclick = function() {
-        Math.abs(params.page--);
+        params.page = (--params.page > 0 ? params.page : 0);
         renderPage(ijkmgr, params);
       };
       $("#btn-next-page")[0].onclick = function() {
-        Math.abs(params.page++);
+        params.page = (++params.page > 1e9 ? 1 : params.page);
         renderPage(ijkmgr, params);
       };
     });  

@@ -28,9 +28,9 @@ a {
   font-size: 14px;
 }
 
-#btn-settings {
-  float: left;
+#btn-search {
   padding: 3px;
+  display: inline;
 }
 
 .hide {
@@ -44,17 +44,31 @@ a {
   float: right;
 }
 
-.nav-bar {
-  overflow: hidden;
-  float: right;
+.search-bar {
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  padding: 10px 5px;
   display: inline;
-  position: relative;
+  overflow: hidden;
+  position: absolute;
 }
 
-.modal {
-  left: 50%;
-  right: 50%;
-  background-color: #222;
+#search-box {
+  padding: 3px;
+  color: #f0f0f0;
+  background-color: transparent;
+  border: 1px solid #f0f0f0;
+  display: inline;
+}
+
+.nav-bar {
+  bottom: 0;
+  right: 0;
+  padding: 0 5px;
+  display: inline;
+  overflow: hidden;
+  position: absolute;
 }
 
 .container {
@@ -102,7 +116,6 @@ a {
 .preview-tpl {
   display: inline;
 }
-
 .preview-tpl img {
   width: 30%;
   padding: 1.2%;

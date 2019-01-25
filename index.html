@@ -9,24 +9,28 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <link href="css/style.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-    <![endif]-->
   </head>
   <body>
     <div id="viewport" class="ijktpl-tpl">
       <div id="head-container" class="container">
         <h2>Welcome to TinyBooru~<h2>
-        <button id="btn-settings" class="btn">Settings</button>
+        <div class="search-bar">
+          <button id="btn-search" class="btn">Search</button>
+          [[?params.tags]]
+            <input id="search-box" type="text" size="8" value="[[params.tags]]">
+          [[:params.tags]]
+            <input id="search-box" type="text" size="8" value="<tags>">
+          [[;params.tags]]
+        </div>
         <div class="nav-bar">
           [[?params.page]]
-            <a id="btn-prev-page" href="javascript:void(0)">Prev</a>
+            <a id="btn-prev-page" href="javascript:void(0);">Prev</a>
             &nbsp;&nbsp;[[params.page]]&nbsp;&nbsp;
-            <a id="btn-next-page" href="javascript:void(0)">Next</a>
+            <a id="btn-next-page" href="javascript:void(0);">Next</a>
           [[:params.page]]
             <!-- page 0 -->
-            <a href="javascript:void(0)">Help</a>
-            <a href="javascript:void(0)">About</a>
+            <a href="javascript:void(0);">Help</a>
+            <a href="javascript:void(0);">About</a>
             <a href="mailto:hexiedeshijie@gmail.com">Contact</a>
           [[;params.page]]
         </div>
