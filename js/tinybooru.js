@@ -17,6 +17,16 @@
 (function() {
   var DATA_URL = "https://yande.re/post/index.json?tags={tags}&limit={limit}&page={page}";
 
+  // Polyfill for Android5.x
+  if (typeof NodeList.prototype.forEach !== "function") {
+    NodeList.prototype.forEach = function(callback, thisArg) {
+      var i, self = this;
+      for (i = 0; i < self.length; i++) {
+        callback.apply(thisArg, [self[i], i, self]);
+      }
+    };
+  }
+
   function $(selector) {
     return document.querySelectorAll(selector);
   }
@@ -43,6 +53,13 @@
       ijkmgr.render({
         posts: data,
         params: params
+      });
+
+      // Apply images size.
+      $("img").forEach(function(img, idx) {
+        // Order same as rendered
+        img.width = data[idx].preview_width;
+        img.height = data[idx].preview_height;
       });
 
       // Re-Binding events
@@ -81,8 +98,8 @@
     $("#viewport")[0].classList.remove("ijktpl-tpl");
 
     var params = {
-      tags: "seifuku+rating:s",
-      limit: 9,
+      tags: "nekopara+rating:s",
+      limit: 30,
       page: 1
     };
     renderPage(ijkmgr, params);
