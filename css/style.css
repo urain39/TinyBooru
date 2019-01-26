@@ -47,8 +47,8 @@ a {
 .search-bar {
   bottom: 0;
   left: 0;
-  width: 45%;
-  padding: 5px;
+  width: 50%;
+  padding: 3px 8px;
   display: inline;
   overflow: hidden;
   position: absolute;
@@ -66,10 +66,12 @@ a {
 .nav-bar {
   bottom: 0;
   right: 0;
-  padding: 0 5px;
+  width: 50%;
+  padding: 0 8px;
   display: inline;
   overflow: hidden;
   position: absolute;
+  text-align: right;
 }
 .nav-bar * {
   font-size: 17px;
