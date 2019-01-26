@@ -47,8 +47,10 @@
 
       // Re-Binding events
       $("#btn-search")[0].onclick = function() {
+        if (params.page != 0) {
+          params.tags = $("#search-box")[0].value;
+        }
         params.page = 1; // Reset.
-        params.tags = $("#search-box")[0].value;
         renderPage(ijkmgr, params);
       };
       if (params.page < 1) {
@@ -75,7 +77,7 @@
       params: { page: 0 }
     }, { debug: true });
     self.ijkmgr.compile();
-    // First page
+    // First page.
     $("#viewport")[0].classList.remove("ijktpl-tpl");
 
     var params = {

@@ -13,19 +13,19 @@
   <body>
     <div id="viewport" class="ijktpl-tpl">
       <div id="head-container" class="container">
-        <h2>Welcome to TinyBooru~<h2>
+        <h2>Welcome to TinyBooru~</h2>
         <div class="search-bar">
           <button id="btn-search" class="btn">Search</button>
-          [[?params.tags]]
+          [[?params.page]]
             <input id="search-box" type="text" size="8" value="[[params.tags]]">
-          [[:params.tags]]
-            <input id="search-box" type="text" size="8" value="<tags>">
-          [[;params.tags]]
+          [[:params.page]]
+            <!-- See bug: https://github.com/urain39/ijktpl.js/issues/14 -->
+          [[;params.page]]
         </div>
         <div class="nav-bar">
           [[?params.page]]
             <a id="btn-prev-page" href="javascript:void(0);">Prev</a>
-            &nbsp;&nbsp;[[params.page]]&nbsp;&nbsp;
+            <span>  [[params.page]]  </span>
             <a id="btn-next-page" href="javascript:void(0);">Next</a>
           [[:params.page]]
             <!-- page 0 -->
