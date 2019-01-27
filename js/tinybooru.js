@@ -56,11 +56,11 @@
       });
 
       // Apply images size.
-      $("img").forEach(function(img, idx) {
+      /*$("img").forEach(function(img, idx) {
         // Order same as rendered
         img.width = data[idx].preview_width;
         img.height = data[idx].preview_height;
-      });
+      });*/
 
       // Re-Binding events
       $("#btn-search")[0].onclick = function() {
