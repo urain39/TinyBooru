@@ -17,16 +17,6 @@
 (function() {
   var DATA_URL = "https://yande.re/post/index.json?tags={tags}&limit={limit}&page={page}";
 
-  // Polyfill for Android5.x
-  if (typeof NodeList.prototype.forEach !== "function") {
-    NodeList.prototype.forEach = function(callback, thisArg) {
-      var i, self = this;
-      for (i = 0; i < self.length; i++) {
-        callback.apply(thisArg, [self[i], i, self]);
-      }
-    };
-  }
-
   function $(selector) {
     return document.querySelectorAll(selector);
   }
@@ -39,6 +29,7 @@
   }
 
   function fetchPosts(params, onReady) {
+    return onReady([]);
     var xhr = new XMLHttpRequest();
     xhr.open("GET", format(DATA_URL, params), true);
     xhr.setRequestHeader("Content-Type", "text/plain");
@@ -54,13 +45,6 @@
         posts: data,
         params: params
       });
-
-      // Apply images size.
-      /*$("img").forEach(function(img, idx) {
-        // Order same as rendered
-        img.width = data[idx].preview_width;
-        img.height = data[idx].preview_height;
-      });*/
 
       // Re-Binding events
       $("#btn-search")[0].onclick = function() {
