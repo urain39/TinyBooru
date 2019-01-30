@@ -130,24 +130,45 @@ a {
   padding: 1.2%;
 }
 
+/* Old Mobile Phone */
 @media (max-height: 500px) {
   body {
     overflow-y: auto;
   }
 
   #head-container {
-    height: 25%;
+    height: 20%;
   }
 
   #main-container {
-    height: 65%;
+    height: 70%;
   }
 
   #footer-container section {
-    padding-top: 5px;
+    padding-top: 16px;
   }
 }
 
+/* Old Mobile Phone(Horizontal) */
+@media (max-height: 360px) {
+  body {
+    overflow-y: auto;
+  }
+
+  #head-container {
+    height: 40%;
+  }
+
+  #main-container {
+    height: 50%;
+  }
+
+  #footer-container section {
+    padding: 3px;
+  }
+}
+
+/* iPad or PC */
 @media (min-height: 768px) {
   #head-container {
     height: 8%;

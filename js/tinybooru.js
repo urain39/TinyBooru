@@ -69,7 +69,7 @@
 
   window.onload = function() {
     var self = this;
-    var $vConsolse = new VConsole();
+    //var $vConsolse = new VConsole();
     var tpl = $("#viewport")[0];
 
     self.ijkmgr = new IJKTPL(tpl, {
