@@ -45,7 +45,7 @@
         params: params
       });
 
-      // Re-Binding events
+      // (Re-)Binding events
       $("#btn-search")[0].onclick = function() {
         if (params.page != 0) {
           params.tags = $("#search-box")[0].value;
@@ -77,11 +77,11 @@
       params: { page: 0 }
     }, { debug: true });
     self.ijkmgr.compile();
-    // First page.
+    // Splash page.
     $("#viewport")[0].classList.remove("ijktpl-tpl");
 
     var params = {
-      tags: "nekopara+rating:s",
+      tags: "order:date+rating:s",
       limit: 30,
       page: 1
     };
