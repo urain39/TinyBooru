@@ -148,24 +148,6 @@ a {
   }
 }
 
-@media (max-height: 320px) {
-  body {
-    overflow-y: auto;
-  }
-
-  #head-container {
-    height: 35%;
-  }
-
-  #main-container {
-    height: 55%;
-  } 
-
-  #footer-container section {
-    padding-top: 5px;
-  }
-}
-
 @media (min-height: 768px) {
   #head-container {
     height: 8%;

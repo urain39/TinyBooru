@@ -29,7 +29,6 @@
   }
 
   function fetchPosts(params, onReady) {
-    return onReady([]);
     var xhr = new XMLHttpRequest();
     xhr.open("GET", format(DATA_URL, params), true);
     xhr.setRequestHeader("Content-Type", "text/plain");
