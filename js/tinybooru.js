@@ -31,9 +31,10 @@
   function fetchPosts(params, onReady) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", format(DATA_URL, params), true);
+    xhr.responseType = "json";
     xhr.setRequestHeader("Content-Type", "text/plain");
     xhr.onload = function() {
-      onReady(JSON.parse(this.responseText));
+      onReady(this.response);
     };
     xhr.send(null);
   }
