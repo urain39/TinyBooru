@@ -28,26 +28,29 @@
     });
   }
 
-  function fetchPosts(params, onReady) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", format(DATA_URL, params), true);
-    xhr.responseType = "json";
-    xhr.setRequestHeader("Content-Type", "text/plain");
-    xhr.onload = function() {
-      onReady(this.response);
-    };
-    xhr.send(null);
+  function fetchPosts(params) {
+    return new Promise(function (resolve, reject) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", format(DATA_URL, params), true);
+      xhr.responseType = "json";
+      xhr.setRequestHeader("Content-Type", "text/plain");
+      xhr.onload = function() {
+        resolve(this.response);
+      };
+      xhr.send(null);
+    });
+
   }
 
   function renderPage(ijkmgr, params) {
-    fetchPosts(params, function(data) {
+    fetchPosts(params).then(function (data) {
       ijkmgr.render({
         posts: data,
         params: params
       });
 
       // (Re-)Binding events
-      $("#btn-search")[0].onclick = function() {
+      $("#btn-search")[0].onclick = function(event) {
         if (params.page != 0) {
           params.tags = $("#search-box")[0].value;
         }
@@ -57,11 +60,11 @@
       if (params.page < 1) {
         return; // skip page 0.
       }
-      $("#btn-prev-page")[0].onclick = function() {
+      $("#btn-prev-page")[0].onclick = function(event) {
         params.page = (--params.page > 0 ? params.page : 0);
         renderPage(ijkmgr, params);
       };
-      $("#btn-next-page")[0].onclick = function() {
+      $("#btn-next-page")[0].onclick = function(event) {
         params.page = (++params.page > 1e9 ? 1 : params.page);
         renderPage(ijkmgr, params);
       };
