@@ -29,7 +29,7 @@
   }
 
   function fetchPosts(params) {
-    return new Promise(function (resolve, reject) {
+    return new Runthen(function (resolve) {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", format(DATA_URL, params), true);
       xhr.responseType = "json";
@@ -39,11 +39,11 @@
       };
       xhr.send(null);
     });
-
   }
 
   function renderPage(ijkmgr, params) {
-    fetchPosts(params).then(function (data) {
+    fetchPosts(params)
+    .then(function (data) {
       ijkmgr.render({
         posts: data,
         params: params
@@ -68,12 +68,16 @@
         params.page = (++params.page > 1e9 ? 1 : params.page);
         renderPage(ijkmgr, params);
       };
-    });  
+    })
+    .catch(function(error) {
+      alert(error);
+      throw error;
+    }).done();
   }
 
   window.onload = function() {
     var self = this;
-    //var $vConsolse = new VConsole();
+    var $vConsolse = new VConsole();
     var tpl = $("#viewport")[0];
 
     self.ijkmgr = new IJKTPL(tpl, {
