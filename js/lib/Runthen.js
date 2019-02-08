@@ -53,6 +53,7 @@
     if (self._state !== ST_PENDING) {
       return; // State has been changed, so just ignore it.
     }
+    // The executor's callback
     resolve = function (value) {
       context = value;
       // Handle Promise-like then-chains.
