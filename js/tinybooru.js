@@ -21,10 +21,11 @@
     return document.querySelectorAll(selector);
   }
 
-  function format(str, map) {
+  function format(str, obj) {
     return str.replace(/\{([0-9A-Za-z]+)\}/g, function(key) {
       key = key.substring(1, key.length - 1);
-      return map[key] || "";
+      key = Number(key) || key;
+      return obj[key] || "";
     });
   }
 
@@ -47,8 +48,8 @@
     fetchPosts(params)
     .then(function (data) {
       if (currPage !== params.page) {
-        // Holy sh*t! we too late!
-        return;
+        // Holy sh*t! we are too late!
+        throw format("skip render page {0}.", [ currPage ]);
       }
 
       ijkmgr.render({
@@ -76,9 +77,12 @@
         renderPage(ijkmgr, params);
       };
     })
-    .catch(function(error) {
-      alert(error);
-      throw error;
+    .catch(function(value) {
+      if (value instanceof Error) {
+        throw value;
+      } else {
+        alert(value);
+      }
     }).done();
   }
 
