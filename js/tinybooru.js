@@ -42,8 +42,15 @@
   }
 
   function renderPage(ijkmgr, params) {
+    var currPage = params.page;
+
     fetchPosts(params)
     .then(function (data) {
+      if (currPage !== params.page) {
+        // Holy sh*t! we too late!
+        return;
+      }
+
       ijkmgr.render({
         posts: data,
         params: params
