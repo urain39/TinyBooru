@@ -21,39 +21,30 @@
     return document.querySelectorAll(selector);
   }
 
-  function format(str, obj) {
-    return str.replace(/\{([0-9A-Za-z]+)\}/g, function(key) {
-      key = key.substring(1, key.length - 1);
-      key = Number(key) || key;
-      return obj[key] || "";
-    });
-  }
-
-  function fetchPosts(params) {
-    return new Runthen(function (resolve) {
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", format(DATA_URL, params), true);
-      xhr.responseType = "json";
-      xhr.setRequestHeader("Content-Type", "text/plain");
-      xhr.onload = function() {
-        resolve(this.response);
-      };
-      xhr.send(null);
-    });
-  }
-
   function renderPage(ijkmgr, params) {
     var currPage = params.page;
 
-    fetchPosts(params)
-    .then(function (data) {
+    new SyncQueue()
+    .add(function (context) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", DATA_URL.format(params), true);
+      xhr.responseType = "json";
+      xhr.setRequestHeader("Content-Type", "text/plain");
+      xhr.onload = function() {
+        context.setResult(this.response);
+        context.finish();
+      };
+      xhr.send(null);
+    })
+    .then(function (context) {
       if (currPage !== params.page) {
         // Holy sh*t! we are too late!
-        throw format("skip render page {0}.", [ currPage ]);
+        alert("skip render page {0}.".format([currPage]));
+        return;
       }
 
       ijkmgr.render({
-        posts: data,
+        posts: context.getResult(),
         params: params
       });
 
@@ -76,14 +67,10 @@
         params.page = (++params.page > 1e9 ? 1 : params.page);
         renderPage(ijkmgr, params);
       };
+      // Mark render complete.
+      context.complete();
     })
-    .catch(function(value) {
-      if (value instanceof Error) {
-        throw value;
-      } else {
-        alert(value);
-      }
-    }).done();
+    .start();
   }
 
   window.onload = function() {
