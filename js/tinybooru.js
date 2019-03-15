@@ -21,30 +21,31 @@
     return document.querySelectorAll(selector);
   }
 
-  function renderPage(ijkmgr, params) {
-    var currPage = params.page;
-
-    new SyncQueue()
-    .add(function (context) {
+  function fetchPosts(params) {
+    return new Waiter(function (resolve) {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", DATA_URL.format(params), true);
       xhr.responseType = "json";
       xhr.setRequestHeader("Content-Type", "text/plain");
       xhr.onload = function() {
-        context.setResult(this.response);
-        context.finish();
+        resolve(this.response);
       };
       xhr.send(null);
-    })
-    .then(function (context) {
+    });
+  }
+
+  function renderPage(ijkmgr, params) {
+    var currPage = params.page;
+
+    fetchPosts(params)
+    .then(function (data) {
       if (currPage !== params.page) {
-        // Holy sh*t! we are too late!
         alert("skip render page {0}.".format([currPage]));
         return;
       }
 
       ijkmgr.render({
-        posts: context.getResult(),
+        posts: data,
         params: params
       });
 
@@ -67,10 +68,11 @@
         params.page = (++params.page > 1e9 ? 1 : params.page);
         renderPage(ijkmgr, params);
       };
-      // Mark render complete.
-      context.complete();
     })
-    .start();
+    .catch(function (err) {
+      alert(err);
+    })
+    .done();
   }
 
   window.onload = function() {
