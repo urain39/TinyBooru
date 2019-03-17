@@ -21,6 +21,19 @@
     return document.querySelectorAll(selector);
   }
 
+  function saveConfig(params) {
+    return localStorage.setItem(
+      "config",
+      JSON.stringify(params)
+    );
+  }
+
+  function loadConfig(params) {
+    return JSON.parse(
+      localStorage.getItem("config")
+    );
+  }
+
   function fetchPosts(params) {
     return new Waiter(function (resolve) {
       var xhr = new XMLHttpRequest();
@@ -57,9 +70,13 @@
         params.page = 1; // Reset.
         renderPage(ijkmgr, params);
       };
+
       if (params.page < 1) {
         return; // skip page 0.
       }
+
+      saveConfig(params);
+
       $("#btn-prev-page")[0].onclick = function(event) {
         params.page = (--params.page > 0 ? params.page : 0);
         renderPage(ijkmgr, params);
@@ -88,11 +105,16 @@
     // Splash page.
     $("#viewport")[0].classList.remove("ijktpl-tpl");
 
-    var params = {
-      tags: "order:date+rating:s",
-      limit: 30,
-      page: 1
-    };
+    var params = loadConfig();
+
+    if (!params) {
+      params = {
+        tags: "order:date+rating:s",
+        limit: 30,
+        page: 1
+      };
+    }
+
     renderPage(ijkmgr, params);
   };
 })();
