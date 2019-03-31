@@ -41,7 +41,10 @@
       xhr.responseType = "json";
       xhr.setRequestHeader("Content-Type", "text/plain");
       xhr.onload = function() {
-        resolve(this.response);
+        var self = this;
+        if (self.status === 200) {
+          resolve(self.response);
+        }
       };
       xhr.send(null);
     });
