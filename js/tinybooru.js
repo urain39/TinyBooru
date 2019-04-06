@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
+/*
+ * jQuery is Best!!!
+ */
+
 (function() {
   var DATA_URL = "https://yande.re/post/index.json?tags={tags}&limit={limit}&page={page}";
-
-  function $(selector) {
-    return document.querySelectorAll(selector);
-  }
 
   function saveConfig(params) {
     return localStorage.setItem(
@@ -65,14 +65,14 @@
         params: params
       });
 
-      // (Re-)Binding events
-      $("#btn-search")[0].onclick = function(event) {
+      // (Re-)Binding event callbacks.
+      $("#btn-search").on("click", function(event) {
         if (params.page != 0) {
-          params.tags = $("#search-box")[0].value;
+          params.tags = $("#search-box").val();
         }
         params.page = 1; // Reset.
         renderPage(ijkmgr, params);
-      };
+      });
 
       if (params.page < 1) {
         return; // skip page 0.
@@ -80,14 +80,14 @@
 
       saveConfig(params);
 
-      $("#btn-prev-page")[0].onclick = function(event) {
+      $("#btn-prev-page").on("click", function(event) {
         params.page = (--params.page > 0 ? params.page : 0);
         renderPage(ijkmgr, params);
-      };
-      $("#btn-next-page")[0].onclick = function(event) {
+      });
+      $("#btn-next-page").on("click", function(event) {
         params.page = (++params.page > 1e9 ? 1 : params.page);
         renderPage(ijkmgr, params);
-      };
+      });
     })
     .catch(function (err) {
       alert(err);
@@ -95,10 +95,10 @@
     .done();
   }
 
-  window.onload = function() {
+  $(window).on("load", function() {
     var self = this;
     var $vConsolse = new VConsole();
-    var tpl = $("#viewport")[0];
+    var tpl = $("#viewport");
 
     self.ijkmgr = new IJKTPL(tpl, {
       posts: [],
@@ -106,7 +106,7 @@
     }, { debug: true });
     self.ijkmgr.compile();
     // Splash page.
-    $("#viewport")[0].classList.remove("ijktpl-tpl");
+    $("#viewport").removeClass("ijktpl-tpl");
 
     var params = loadConfig();
 
@@ -118,8 +118,14 @@
       };
     }
 
+    $(document).on("keydown", function(event) {
+      if (event.key === "Enter") {
+        $("#btn-search").click();
+      }
+    });
+
     renderPage(ijkmgr, params);
-  };
+  });
 })();
 
 // vim: set ts=2 sw=2 ff=unix et:
