@@ -3,6 +3,13 @@
   src: url("../fonts/NotoSerif-Regular.ttf") format("TrueType");
 }
 
+/* hide scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
 html, body {
   margin: 0;
   padding: 0;
