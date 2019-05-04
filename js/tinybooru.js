@@ -35,7 +35,7 @@
   }
 
   function fetchPosts(params) {
-    return new Promise(function (resolve) {
+    return new Waiter(function (resolve) {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", DATA_URL.format(params), true);
       xhr.responseType = "json";
@@ -91,7 +91,8 @@
     })
     .catch(function (err) {
       alert(err);
-    });
+    })
+    .done();
   }
 
   $(window).on("load", function() {

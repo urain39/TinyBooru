@@ -4,7 +4,7 @@ if (typeof String.prototype.format !== "function") {
     return self.replace(/\{([0-9A-Za-z_$]+)\}/g, function(token) {
       var key = token.slice(1, token.length - 1),
           idx = parseInt(key, 10);
-      if (typeof idx === "number") {
+      if (!isNaN(idx)) {
         key = idx;
       }
       return obj[key];
