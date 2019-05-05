@@ -54,44 +54,44 @@
     var currPage = params.page;
 
     fetchPosts(params)
-    .then(function (data) {
-      if (currPage !== params.page) {
-        alert("skip render page {0}.".format([currPage]));
-        return;
-      }
-
-      ijkmgr.render({
-        posts: data,
-        params: params
-      });
-
-      // (Re-)Binding event callbacks.
-      $("#btn-search").on("click", function(event) {
-        if (params.page != 0) {
-          params.tags = $("#search-box").val();
+      .then(function (data) {
+        if (currPage !== params.page) {
+          alert("skip render page {0}.".format([currPage]));
+          return;
         }
-        params.page = 1; // Reset.
-        renderPage(ijkmgr, params);
-      });
 
-      if (params.page < 1) {
-        return; // skip page 0.
-      }
+        ijkmgr.render({
+          posts: data,
+          params: params
+        });
 
-      saveConfig(params);
+        // (Re-)Binding event callbacks.
+        $("#btn-search").on("click", function(event) {
+          if (params.page != 0) {
+            params.tags = $("#search-box").val();
+          }
+          params.page = 1; // Reset.
+          renderPage(ijkmgr, params);
+        });
 
-      $("#btn-prev-page").on("click", function(event) {
-        params.page = (--params.page > 0 ? params.page : 0);
-        renderPage(ijkmgr, params);
-      });
-      $("#btn-next-page").on("click", function(event) {
-        params.page = (++params.page > 1e9 ? 1 : params.page);
-        renderPage(ijkmgr, params);
-      });
-    })
-    .catch(function (err) {
-      alert(err);
-    })
+        if (params.page < 1) {
+          return; // skip page 0.
+        }
+
+        saveConfig(params);
+
+        $("#btn-prev-page").on("click", function(event) {
+          params.page = (--params.page > 0 ? params.page : 0);
+          renderPage(ijkmgr, params);
+        });
+        $("#btn-next-page").on("click", function(event) {
+          params.page = (++params.page > 1e9 ? 1 : params.page);
+          renderPage(ijkmgr, params);
+        });
+      })
+      .catch(function (err) {
+        alert(err);
+      })
     .done();
   }
 
