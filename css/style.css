@@ -178,7 +178,7 @@ a {
 /* iPad or PC */
 @media (min-height: 768px) {
   #head-container {
-    height: 8%;
+    height: 10%; /* try fix display on PC */
   }
 
   #main-container {
