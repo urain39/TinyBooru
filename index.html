@@ -11,37 +11,38 @@
     <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
-    <div id="viewport" class="ijktpl-tpl">
+    <div id="viewport"></div>
+    <script id="viewport-tpl" type="text/x-template">
       <div id="head-container" class="container">
         <h2>Welcome to TinyBooru~</h2>
         <div class="search-bar">
           <button id="btn-search" class="btn">Search</button>
-          [[?params.page]]
-            <input id="search-box" type="text" size="8" value="[[params.tags]]">
-          [[;params.page]]
+          {?params.page}
+            <input id="search-box" type="text" size="8" value="{params.tags}">
+          {/params.page}
         </div>
         <div class="nav-bar">
-          [[?params.page]]
-            <a id="btn-prev-page" href="javascript:void(0);">Prev</a>
-            <span>[[params.page]]</span>
-            <a id="btn-next-page" href="javascript:void(0);">Next</a>
-          [[:params.page]]
+          {?params.page}
+            <a id="btn-prev-page" href="#!">Prev</a>
+            <span>{params.page}</span>
+            <a id="btn-next-page" href="#!">Next</a>
+          {*params.page}
             <!-- page 0 -->
-            <a href="javascript:void(0);">Help</a>
-            <a href="javascript:void(0);">About</a>
+            <a href="#!">Help</a>
+            <a href="#!">About</a>
             <a href="mailto:hexiedeshijie@gmail.com">Contact</a>
-          [[;params.page]]
+          {/params.page}
         </div>
       </div>
       <div id="main-container" class="container">
         <div id="post-viewer">
-        [[^posts]] [[@post]]
-          [[?post.preview_url]]
-          <div class="preview-tpl">
-            <a href="[[post.file_url]]"><img src="[[post.preview_url]]" width="[[post.preview_width]]" height="[[post.preview_height]]"/></a>
+        {?posts}
+          {?preview_url}
+          <div class="preview">
+            <a href="{file_url}"><img src="{preview_url}" width="{preview_width}" height="{preview_height}"/></a>
           </div>
-          [[;post.preview_url]]
-        [[$posts]]
+          {/preview_url}
+        {/posts}
         </div>
       </div>
       <div id="footer-container" class="container">
@@ -49,11 +50,11 @@
           &copy; 2018 TinyBooru. 由ijktpl.js走心驱动。
         </section>
       </div>
-    </div>
+    </script>
     <script src="js/lib/vconsole.min.js"></script>
     <script src="js/lib/jquery.min.js"></script>
     <script src="js/lib/waiter.min.js"></script>
-    <script src="js/lib/ijktpl.min.js"></script>
+    <script src="js/lib/ij2tpl.min.js"></script>
     <script src="js/lib/format.js"></script>
     <script src="js/tinybooru.js"></script>
   </body>

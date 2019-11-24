@@ -124,14 +124,10 @@ a {
   overflow: scroll;
 }
 
-.ijktpl-tpl {
-  display: none;
-}
-
-.preview-tpl {
+.preview {
   display: inline;
 }
-.preview-tpl img {
+.preview img {
   /* width: 30%;
   height: 30%; */
   padding: 1.2%;

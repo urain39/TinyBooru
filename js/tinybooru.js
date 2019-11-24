@@ -98,15 +98,16 @@
   $(window).on("load", function() {
     var self = this;
     var $vConsolse = new VConsole();
-    var tpl = $("#viewport");
 
-    self.ijkmgr = new IJKTPL(tpl, {
-      posts: [],
-      params: { page: 0 }
-    }, { debug: true });
-    self.ijkmgr.compile();
-    // Splash page.
-    $("#viewport").removeClass("ijktpl-tpl");
+    self.ijkmgr = {
+      template: IJ2TPL.parse(
+        $("#viewport-tpl").text()
+      ),
+      element: $("#viewport")[0],
+      render: function(data) {
+        this.element.innerHTML = this.template.render(data);
+      }
+    };
 
     var params = loadConfig();
 

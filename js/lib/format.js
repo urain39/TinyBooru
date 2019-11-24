@@ -1,13 +1,8 @@
 if (typeof String.prototype.format !== "function") {
-  String.prototype.format = function (obj) {
+  String.prototype.format = function (map) {
     var self = this;
-    return self.replace(/\{([0-9A-Za-z_$]+)\}/g, function(token) {
-      var key = token.slice(1, token.length - 1),
-          idx = parseInt(key, 10);
-      if (!isNaN(idx)) {
-        key = idx;
-      }
-      return obj[key];
+    return self.replace(/\{([0-9A-Za-z_$]+)\}/g, function(match, key) {
+      return map[key];
     });
   };
 }
