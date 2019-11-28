@@ -103,9 +103,11 @@
       template: IJ2TPL.parse(
         $("#viewport-tpl").text()
       ),
-      element: $("#viewport")[0],
+      element: $("#viewport"),
       render: function(data) {
-        this.element.innerHTML = this.template.render(data);
+        this.element.html(
+        	this.template.render(data)
+        );
       }
     };
 
