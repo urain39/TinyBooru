@@ -99,16 +99,16 @@
     var self = this;
     var $vConsolse = new VConsole();
 
+	Mustache.tags = ['{', '}'];
+
     self.ijkmgr = {
-      template: IJ2TPL.parse(
-        $("#viewport-tpl").text()
-      ),
+      template: $("#viewport-tpl").text(),
       element: $("#viewport"),
       render: function(data) {
         var startTime = new Date().getTime();
 
         this.element.html(
-          this.template.render(data)
+          Mustache.render(this.template, data)
         );
 
         typeof console !== 'undefined' ?

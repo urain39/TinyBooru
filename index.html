@@ -17,16 +17,17 @@
         <h2>Welcome to TinyBooru~</h2>
         <div class="search-bar">
           <button id="btn-search" class="btn">Search</button>
-          {?params.page}
+          {#params.page}
             <input id="search-box" type="text" size="8" value="{params.tags}">
           {/params.page}
         </div>
         <div class="nav-bar">
-          {?params.page}
+          {#params.page}
             <a id="btn-prev-page" href="#!">Prev</a>
             <span>{params.page}</span>
             <a id="btn-next-page" href="#!">Next</a>
-          {*params.page}
+          {/params.page}
+          {^params.page}
             <!-- page 0 -->
             <a href="#!">Help</a>
             <a href="#!">About</a>
@@ -36,8 +37,8 @@
       </div>
       <div id="main-container" class="container">
         <div id="post-viewer">
-        {?posts}
-          {?preview_url}
+        {#posts}
+          {#preview_url}
           <div class="preview">
             <a href="{file_url}"><img src="{preview_url}" width="{preview_width}" height="{preview_height}"/></a>
           </div>
@@ -54,7 +55,7 @@
     <script src="js/lib/vconsole.min.js"></script>
     <script src="js/lib/jquery.min.js"></script>
     <script src="js/lib/waiter.min.js"></script>
-    <script src="js/lib/ij2tpl.min.js"></script>
+    <script src="js/lib/mustache.min.js"></script>
     <script src="js/lib/format.js"></script>
     <script src="js/tinybooru.js"></script>
   </body>
