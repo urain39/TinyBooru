@@ -105,9 +105,17 @@
       ),
       element: $("#viewport"),
       render: function(data) {
+        var startTime = new Date().getTime();
+
         this.element.html(
-        	this.template.render(data)
+          this.template.render(data)
         );
+
+        typeof console !== 'undefined' ?
+          console.log('Render time: ' + (new Date().getTime() - startTime) + 'ms')
+        :
+          void 0
+        ;
       }
     };
 
