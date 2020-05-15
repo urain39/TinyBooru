@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright 2018 urain39
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -50,6 +50,27 @@
     });
   }
 
+  // Use privately namespace to create helpers
+  var helpers = (function() {
+    // You can't see me XD
+    var date = new Date(),
+      helpers = {
+        title: function(context) {
+          var params = context.resolve('params');
+          return params.page ?
+            '<h2><b>Viewing</b>&nbsp;&nbsp;<small>{tags}</small></h2>'.format(
+              params, IJ2TPL.escapeHTML
+            )
+          :
+            '<h2>Welcome to TinyBooru~</h2>';
+        },
+        fullYear: function(context) {
+          return date.getFullYear();
+        }
+      };
+    return helpers;
+  })();
+
   function renderPage(ijkmgr, params) {
     var currPage = params.page;
 
@@ -62,7 +83,8 @@
 
         ijkmgr.render({
           posts: data,
-          params: params
+          params: params,
+          helpers: helpers
         });
 
         // (Re-)Binding event callbacks.
@@ -111,11 +133,10 @@
           this.template.render(data)
         );
 
-        typeof console !== 'undefined' ?
-          console.log('Render time: ' + (new Date().getTime() - startTime) + 'ms')
-        :
-          void 0
-        ;
+        if (typeof console !== 'undefined')
+          console.log('Render time: {0}ms'.format([
+            new Date().getTime() - startTime
+          ]));
       }
     };
 
