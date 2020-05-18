@@ -128,9 +128,9 @@ a {
   display: inline;
 }
 .preview img {
-  /* width: 30%;
-  height: 30%; */
-  padding: 1.2%;
+  width: 30%;
+  height: auto;
+  padding: 1%;
 }
 
 /* Old Mobile Phone */
