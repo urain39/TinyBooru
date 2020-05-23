@@ -59,7 +59,7 @@
           var params = context.resolve('params');
           return params.page ?
             '<h2><b>Viewing</b>&nbsp;&nbsp;<small>{tags}</small></h2>'.format(
-              params, IJ2TPL.escapeHTML
+              params, IJ2TPL.escape
             )
           :
             '<h2>Welcome to TinyBooru~</h2>';
