@@ -56,7 +56,7 @@
     var date = new Date(),
       helpers = {
         title: function(context) {
-          var params = context.resolve('params');
+          var params = context.resolve(['params', null, null]);
           return params.page ?
             '<h2><b>Viewing</b>&nbsp;&nbsp;<small>{tags}</small></h2>'.format(
               params, IJ2TPL.escape
@@ -71,7 +71,7 @@
     return helpers;
   })();
 
-  function renderPage(ijkmgr, params) {
+  function renderPage(ij2mgr, params) {
     var currPage = params.page;
 
     fetchPosts(params)
@@ -81,7 +81,7 @@
           return;
         }
 
-        ijkmgr.render({
+        ij2mgr.render({
           posts: data,
           params: params,
           helpers: helpers
@@ -93,7 +93,7 @@
             params.tags = $("#search-box").val();
           }
           params.page = 1; // Reset.
-          renderPage(ijkmgr, params);
+          renderPage(ij2mgr, params);
         });
 
         if (params.page < 1) {
@@ -104,11 +104,11 @@
 
         $("#btn-prev-page").on("click", function(event) {
           params.page = (--params.page > 0 ? params.page : 0);
-          renderPage(ijkmgr, params);
+          renderPage(ij2mgr, params);
         });
         $("#btn-next-page").on("click", function(event) {
           params.page = (++params.page > 1e9 ? 1 : params.page);
-          renderPage(ijkmgr, params);
+          renderPage(ij2mgr, params);
         });
       })
       .catch(function (err) {
@@ -121,16 +121,19 @@
     var self = this;
     var $vConsolse = new VConsole();
 
-    self.ijkmgr = {
+    self.ij2mgr = {
       template: IJ2TPL.parse(
         $("#viewport-tpl").text()
+      ),
+      viewerTemplate: IJ2TPL.parse(
+        $("#post-viewer-tpl").text()
       ),
       element: $("#viewport"),
       render: function(data) {
         var startTime = new Date().getTime();
 
         this.element.html(
-          this.template.render(data)
+          this.template.render(data, this)
         );
 
         if (typeof console !== 'undefined')
@@ -156,7 +159,7 @@
       }
     });
 
-    renderPage(ijkmgr, params);
+    renderPage(ij2mgr, params);
   });
 })();
 

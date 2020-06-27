@@ -15,12 +15,12 @@
     <script id="viewport-tpl" type="text/x-template">
       <div id="head-container" class="container">
         <div id="title-wrapper">
-          {#helpers.title} <!-- This just a test, do not ask me why! -->
+          {#helpers.title}{-- This just a test, do not ask me why! --}
         </div>
         <div class="search-bar">
           <button id="btn-search" class="btn">Search</button>
           {?params.page}
-            <input id="search-box" type="text" size="8" value="{params.tags}">
+            {-}<input id="search-box" type="text" size="8" value="{params.tags}">
           {/params.page}
         </div>
         <div class="nav-bar">
@@ -29,28 +29,30 @@
             <span>{params.page}</span>
             <a id="btn-next-page" href="#!">Next</a>
           {*params.page}
-            <!-- page 0 -->
-            <a href="#!">Help</a>
-            <a href="#!">About</a>
+            {-- page 0 --}
+            <a href="#!">Help</a><a href="#!">About</a>
             <a href="mailto:hexiedeshijie@gmail.com">Contact</a>
           {/params.page}
         </div>
       </div>
       <div id="main-container" class="container">
-        <div id="post-viewer">
-        {?posts}
-          {?preview_url}
-          <div class="preview">
-            <a href="{file_url}"><img src="{preview_url}" width="{preview_width}" height="{preview_height}"/></a>
-          </div>
-          {/preview_url}
-        {/posts}
-        </div>
+        {-}{@viewerTemplate}
       </div>
       <div id="footer-container" class="container">
         <section>
           &copy; 2018-{helpers.fullYear} TinyBooru. 由ij2tpl.js走心驱动。
         </section>
+      </div>
+    </script>
+    <script id="post-viewer-tpl" type="text/x-template">
+      <div id="post-viewer">
+        {?posts}
+          {?preview_url}
+            {-}<div class="preview">
+              {-}<a href="{file_url}"><img src="{preview_url}" width="{preview_width}" height="{preview_height}"/></a>
+            {-}</div>
+          {/preview_url}
+        {/posts}
       </div>
     </script>
     <script src="js/lib/vconsole.min.js"></script>
