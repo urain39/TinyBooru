@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# 2020-07-27 18:42
+
+CACHE:
+index.html
+favicon.ico
+js/lib/format.js
+js/lib/ij2tpl.min.js
+js/lib/jquery.min.js
+js/lib/vconsole.min.js
+js/lib/waiter.min.js
+js/tinybooru.js
+css/style.css
+fonts/NotoSerif-Regular.ttf

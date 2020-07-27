@@ -125,7 +125,7 @@
       template: IJ2TPL.parse(
         $("#viewport-tpl").text()
       ),
-      viewerTemplate: IJ2TPL.parse(
+      "post-viewer-tpl": IJ2TPL.parse(
         $("#post-viewer-tpl").text()
       ),
       element: $("#viewport"),
